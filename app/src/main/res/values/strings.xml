@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">FoodRecipeApp</string>
+    <string name="favourite">Favourite</string>
+    <string name="home">Home</string>
+    <string name="explore">Explore</string>
+    <string name="trending_recipes">Trending Recipes</string>
+    <string name="what_s_on_your_mind">What\'s on your mind?</string>
+    <string name="categories">Categories</string>
+</resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFoodFragment">
+
+    <fragment
+        android:id="@+id/homeFoodFragment"
+        android:name="com.project.foodrecipeapp.presentation.fragments.HomeFoodFragment"
+        android:label="HomeFoodFragment" />
+
+    <fragment
+        android:id="@+id/homeFoodFavouriteFragment"
+        android:name="com.project.foodrecipeapp.presentation.fragments.HomeFoodFavouriteFragment"
+        android:label="HomeFoodFavouriteFragment" />
+
+    <fragment
+        android:id="@+id/homeFoodExploreFragment"
+        android:name="com.project.foodrecipeapp.presentation.fragments.HomeFoodExploreFragment"
+        android:label="HomeFoodExploreFragment" />
+
+</navigation>

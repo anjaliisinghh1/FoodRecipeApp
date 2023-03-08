@@ -1,0 +1,15 @@
+package com.project.foodrecipeapp.data.remote
+
+import com.project.foodrecipeapp.data.remote.dto.MealListDTO
+import retrofit2.Response
+import retrofit2.http.GET
+import retrofit2.http.Query
+
+interface FoodRecipeApi {
+
+    @GET("random.php")
+    suspend fun getRandomMeal(): Response<MealListDTO>
+
+    @GET("lookup.php?")
+    suspend fun getFoodRecipeDetailById(@Query("i") id: String): Response<MealListDTO>
+}
