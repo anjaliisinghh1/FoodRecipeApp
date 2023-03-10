@@ -7,11 +7,15 @@
         <entry key="..\:/AndroidPracticeWorkspace/FoodRecipeApp/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/AndroidPracticeWorkspace/FoodRecipeApp/app/src/main/res/layout/activity_main.xml" value="0.16354166666666667" />
         <entry key="..\:/AndroidPracticeWorkspace/FoodRecipeApp/app/src/main/res/layout/activity_meal_detail.xml" value="0.1625" />
+        <entry key="..\:/AndroidPracticeWorkspace/FoodRecipeApp/app/src/main/res/layout/activity_meal_list.xml" value="0.16354166666666667" />
         <entry key="..\:/AndroidPracticeWorkspace/FoodRecipeApp/app/src/main/res/layout/fragment_home_food.xml" value="0.1" />
         <entry key="..\:/AndroidPracticeWorkspace/FoodRecipeApp/app/src/main/res/layout/fragment_home_food_explore.xml" value="0.1625" />
         <entry key="..\:/AndroidPracticeWorkspace/FoodRecipeApp/app/src/main/res/layout/fragment_home_food_favourite.xml" value="0.13418803418803418" />
         <entry key="..\:/AndroidPracticeWorkspace/FoodRecipeApp/app/src/main/res/layout/fragment_ingredients.xml" value="0.16354166666666667" />
         <entry key="..\:/AndroidPracticeWorkspace/FoodRecipeApp/app/src/main/res/layout/fragment_instructions.xml" value="0.1625" />
+        <entry key="..\:/AndroidPracticeWorkspace/FoodRecipeApp/app/src/main/res/layout/item_categories.xml" value="0.1" />
+        <entry key="..\:/AndroidPracticeWorkspace/FoodRecipeApp/app/src/main/res/layout/item_meal.xml" value="0.1625" />
+        <entry key="..\:/AndroidPracticeWorkspace/FoodRecipeApp/app/src/main/res/layout/item_meal_list.xml" value="0.22" />
         <entry key="..\:/AndroidPracticeWorkspace/FoodRecipeApp/app/src/main/res/layout/trending_food_recipes.xml" value="0.1625" />
         <entry key="..\:/AndroidPracticeWorkspace/FoodRecipeApp/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.16354166666666667" />
       </map>

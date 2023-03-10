@@ -18,7 +18,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-                app:title="Meal Name">
+                android:theme="@style/CustomToolbarTheme"
+                app:contentScrim="@color/purple_700">
 
                 <ImageView
                     android:id="@+id/food_image"

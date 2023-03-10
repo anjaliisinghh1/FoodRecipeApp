@@ -1,9 +1,7 @@
 package com.project.foodrecipeapp.common
 
-import com.project.foodrecipeapp.data.remote.dto.MealDTO
-import com.project.foodrecipeapp.data.remote.dto.MealListDTO
-import com.project.foodrecipeapp.domain.model.Meal
-import com.project.foodrecipeapp.domain.model.MealsList
+import com.project.foodrecipeapp.data.remote.dto.*
+import com.project.foodrecipeapp.domain.model.*
 
 fun MealListDTO.toMealListModel(): MealsList{
     return MealsList(
@@ -66,5 +64,34 @@ fun MealDTO.toMealModel(): Meal{
         strSource = strSource,
         strTags = strTags,
         strYoutube = strYoutube
+    )
+}
+
+fun AllMealDTO.toAllMealModel(): AllMeal {
+    return AllMeal(
+        meals = meals.map { it.toAllMealListModel() }
+    )
+}
+
+fun AllMealListDTO.toAllMealListModel(): AllMealList {
+    return AllMealList(
+        idMeal = idMeal,
+        strMeal = strMeal,
+        strMealThumb = strMealThumb
+    )
+}
+
+fun CategoriesDTO.toCategoriesModel(): Categories{
+    return Categories(
+        categories = categories.map { it.toCategoryListModel() }
+    )
+}
+
+fun CategoryListDTO.toCategoryListModel(): CategoryList{
+    return CategoryList(
+        idCategory = idCategory,
+        strCategory = strCategory,
+        strCategoryThumb = strCategoryThumb,
+        strCategoryDescription = strCategoryDescription
     )
 }
