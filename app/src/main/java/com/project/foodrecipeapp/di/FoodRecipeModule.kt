@@ -45,10 +45,10 @@ val repositoryModule: Module = module {
 }
 
 val viewmodelModule: Module = module {
-    viewModel { HomeFoodViewModel(get(), get(), get()) }
+    viewModel { HomeFoodViewModel(get(), get(), get(), get()) }
     viewModel { FoodRecipeDetailViewModel(get()) }
-    viewModel { MealListViewModel(get(),get(),get()) }
-    viewModel { HomeFoodExploreViewModel(get(), get(), get()) }
+    viewModel { MealListViewModel(get(),get(),get(),get()) }
+    viewModel { HomeFoodExploreViewModel(get(), get(), get(), get()) }
 }
 
 val usecaseModule: Module = module {

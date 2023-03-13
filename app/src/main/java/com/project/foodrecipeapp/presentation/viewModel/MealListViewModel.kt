@@ -1,43 +1,111 @@
 package com.project.foodrecipeapp.presentation.viewModel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import androidx.lifecycle.*
+import com.project.foodrecipeapp.MyApplication
+import com.project.foodrecipeapp.common.Resource
 import com.project.foodrecipeapp.common.toAllMealModel
+import com.project.foodrecipeapp.data.remote.dto.AllMealDTO
 import com.project.foodrecipeapp.domain.model.AllMeal
 import com.project.foodrecipeapp.domain.usecases.GetFoodByAreaUseCase
 import com.project.foodrecipeapp.domain.usecases.GetFoodByCategoryUseCase
 import com.project.foodrecipeapp.domain.usecases.GetFoodByIngredientUseCase
 import kotlinx.coroutines.launch
+import retrofit2.Response
+import java.io.IOException
 
 class MealListViewModel(
+    application: Application,
     private val getFoodByCategoryUseCase: GetFoodByCategoryUseCase,
     private val getFoodByAreaUseCase: GetFoodByAreaUseCase,
     private val getFoodByIngredientUseCase: GetFoodByIngredientUseCase
-) : ViewModel(){
+) : AndroidViewModel(application) {
 
-    private val _RecipesLiveData = MutableLiveData<AllMeal>()
-    val RecipesLiveData : LiveData<AllMeal>
-        get() =_RecipesLiveData
+    private val _recipesLiveData = MutableLiveData<Resource<AllMeal>>()
+    val recipesLiveData: LiveData<Resource<AllMeal>>
+        get() = _recipesLiveData
 
-    fun getRecipesByCategory(category: String){
+    fun getRecipesByCategory(category: String) {
         viewModelScope.launch {
-            val categoryRecipes = getFoodByCategoryUseCase.execute(category)
-            val areaRecipes = getFoodByAreaUseCase.execute(category)
-            val ingredientRecipes = getFoodByIngredientUseCase.execute(category)
-
-            if (!categoryRecipes.body()?.meals.isNullOrEmpty() && categoryRecipes.isSuccessful){
-                _RecipesLiveData.postValue(categoryRecipes.body()?.toAllMealModel())
-
-            }else if (!areaRecipes.body()?.meals.isNullOrEmpty() && areaRecipes.isSuccessful){
-                _RecipesLiveData.postValue(areaRecipes.body()?.toAllMealModel())
-
-            }else if (!ingredientRecipes.body()?.meals.isNullOrEmpty() && ingredientRecipes.isSuccessful){
-                _RecipesLiveData.postValue(ingredientRecipes.body()?.toAllMealModel())
+            _recipesLiveData.postValue(Resource.Loading())
+            try {
+                if (hasInternetConnection()) {
+                    val categoryRecipes = getFoodByCategoryUseCase.execute(category)
+                    _recipesLiveData.postValue(handlingResponse(categoryRecipes))
+                } else {
+                    _recipesLiveData.postValue(Resource.Error("No Internet Connection"))
+                }
+            } catch (t: Throwable) {
+                when (t) {
+                    is IOException -> _recipesLiveData.postValue(Resource.Error("Network Failure"))
+                    else -> _recipesLiveData.postValue(Resource.Error("Conversion Error"))
+                }
             }
-
         }
+    }
 
+    fun getRecipesByArea(area: String) {
+        viewModelScope.launch {
+            _recipesLiveData.postValue(Resource.Loading())
+            try {
+                if (hasInternetConnection()) {
+                    val areaRecipes = getFoodByAreaUseCase.execute(area)
+                    _recipesLiveData.postValue(handlingResponse(areaRecipes))
+                } else {
+                    _recipesLiveData.postValue(Resource.Error("No Internet Connection"))
+                }
+            } catch (t: Throwable) {
+                when (t) {
+                    is IOException -> _recipesLiveData.postValue(Resource.Error("Network Failure"))
+                    else -> _recipesLiveData.postValue(Resource.Error("Conversion Error"))
+                }
+            }
+        }
+    }
+
+    fun getRecipesByIngredients(ingredient: String) {
+        viewModelScope.launch {
+            _recipesLiveData.postValue(Resource.Loading())
+            try {
+                if (hasInternetConnection()) {
+                    val ingredientRecipes = getFoodByIngredientUseCase.execute(ingredient)
+                    _recipesLiveData.postValue(handlingResponse(ingredientRecipes))
+                } else {
+                    _recipesLiveData.postValue(Resource.Error("No Internet Connection"))
+                }
+            } catch (t: Throwable) {
+                when (t) {
+                    is IOException -> _recipesLiveData.postValue(Resource.Error("Network Failure"))
+                    else -> _recipesLiveData.postValue(Resource.Error("Conversion Error"))
+                }
+            }
+        }
+    }
+
+    private fun handlingResponse(response: Response<AllMealDTO>): Resource<AllMeal> {
+        if (response.isSuccessful) {
+            response.body()?.let { resultResponse ->
+                return Resource.Success(resultResponse.toAllMealModel())
+            }
+        }
+        return Resource.Error(response.message())
+    }
+
+    private fun hasInternetConnection(): Boolean{
+        val connectivityManager = getApplication<MyApplication>().getSystemService(
+            Context.CONNECTIVITY_SERVICE
+        ) as ConnectivityManager
+
+        val activeNetwork = connectivityManager.activeNetwork ?: return false
+        val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
+        return when {
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+            else -> false
+        }
     }
 }
