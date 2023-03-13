@@ -6,4 +6,6 @@
     <string name="trending_recipes">Trending Recipes</string>
     <string name="what_s_on_your_mind">What\'s on your mind?</string>
     <string name="categories">Categories</string>
+    <string name="area">Area</string>
+    <string name="ingredients">Ingredients</string>
 </resources>

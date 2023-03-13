@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.project.foodrecipeapp.common.Constants.TRENDING_RECIPE
 import com.project.foodrecipeapp.common.Resource
 import com.project.foodrecipeapp.common.toAllMealModel
 import com.project.foodrecipeapp.common.toCategoriesModel
@@ -37,7 +38,7 @@ class HomeFoodViewModel(
 
     init {
         getRandomMeal()
-        getTrendingRecipes("Seafood")
+        getTrendingRecipes(TRENDING_RECIPE)
         getCategories()
     }
 

@@ -10,4 +10,6 @@ object Constants {
     const val INSTRUCTIONS = "Instructions"
     const val EMPTY = ""
     const val SELECTED_VALUE = "selected_value"
+    const val TRENDING_RECIPE = "Seafood"
+    const val EXPLORE_LIST = "list"
 }

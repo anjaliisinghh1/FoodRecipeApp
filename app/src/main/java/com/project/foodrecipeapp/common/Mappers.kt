@@ -95,3 +95,42 @@ fun CategoryListDTO.toCategoryListModel(): CategoryList{
         strCategoryDescription = strCategoryDescription
     )
 }
+
+fun ExploreCategoriesDTO.toExploreCategoriesModel(): ExploreCategories{
+    return ExploreCategories(
+        meals = meals.map { it.toExploreCategoriesDetailModel() }
+    )
+}
+
+fun ExploreCategoriesDetailDTO.toExploreCategoriesDetailModel(): ExploreCategoriesDetail{
+    return ExploreCategoriesDetail(
+        strCategory = strCategory
+    )
+}
+
+fun ExploreAreaDTO.toExploreAreaModel(): ExploreArea{
+    return ExploreArea(
+        meals = meals.map { it.toExploreAreaDetailsModel() }
+    )
+}
+
+fun ExploreAreaDetailsDTO.toExploreAreaDetailsModel(): ExploreAreaDetails{
+    return ExploreAreaDetails(
+        strArea = strArea
+    )
+}
+
+fun ExploreIngredientsDTO.toExploreIngredientsModel(): ExploreIngredients{
+    return ExploreIngredients(
+        meals = meals.map { it.toExploreIngredientsDetailModel() }
+    )
+}
+
+fun ExploreIngredientsDetailDTO.toExploreIngredientsDetailModel(): ExploreIngredientsDetail{
+    return ExploreIngredientsDetail(
+        idIngredient = idIngredient,
+        strIngredient = strIngredient,
+        strDescription = strDescription,
+        strType = strType
+    )
+}

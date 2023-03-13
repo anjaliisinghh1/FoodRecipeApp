@@ -40,9 +40,7 @@ class MealListActivity : AppCompatActivity() {
 
     private fun observeLiveData(){
         viewModel.RecipesLiveData.observe(this, Observer {
-
             mealListAdapter.differ.submitList(it.meals.toList())
-            //mealListAdapter.setDataList(it.meals)
         })
     }
 

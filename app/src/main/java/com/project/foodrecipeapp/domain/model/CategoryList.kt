@@ -1,8 +1,8 @@
 package com.project.foodrecipeapp.domain.model
 
 data class CategoryList(
-    val idCategory: String,
-    val strCategory: String,
-    val strCategoryDescription: String,
-    val strCategoryThumb: String
+    val idCategory: String? = null,
+    val strCategory: String? = null,
+    val strCategoryDescription: String? = null,
+    val strCategoryThumb: String? = null
 )
