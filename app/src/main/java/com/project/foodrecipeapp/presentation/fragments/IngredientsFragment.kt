@@ -132,12 +132,19 @@ class IngredientsFragment : Fragment(R.layout.fragment_ingredients){
 
     private fun onClickListener(){
         binding.shareIcon.setOnClickListener {
-            shareNews(context,mealDetail.meals[0])
+            val recipeLink = mealDetail.meals[0].strSource
+            if (recipeLink.isNullOrEmpty()){
+                Toast.makeText(activity,"URL Not Found",Toast.LENGTH_LONG).show()
+            }else{
+                shareNews(context,mealDetail.meals[0])
+            }
         }
 
         binding.youtubeIcon.setOnClickListener {
             val youtubeUrl = mealDetail.meals[0].strYoutube
-            if (!youtubeUrl.isNullOrEmpty()){
+            if (youtubeUrl.isNullOrEmpty()){
+                Toast.makeText(activity,"URL Not Found",Toast.LENGTH_LONG).show()
+            }else{
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(youtubeUrl)))
             }
         }

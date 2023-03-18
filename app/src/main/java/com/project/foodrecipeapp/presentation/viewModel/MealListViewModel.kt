@@ -100,7 +100,7 @@ class MealListViewModel(
             } catch (t: Throwable) {
                 when (t) {
                     is IOException -> _recipesLiveData.postValue(Resource.Error("Network Failure"))
-                    else -> _recipesLiveData.postValue(Resource.Error("Conversion Error"))
+                    else -> _recipesLiveData.postValue(Resource.Error("Meal Not Found"))
                 }
             }
         }
