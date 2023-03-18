@@ -2,10 +2,12 @@ package com.project.foodrecipeapp.presentation.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.project.foodrecipeapp.R
 import com.project.foodrecipeapp.common.Constants
+import com.project.foodrecipeapp.common.Resource
 import com.project.foodrecipeapp.databinding.FragmentInstructionsBinding
 import com.project.foodrecipeapp.domain.model.MealsList
 import com.project.foodrecipeapp.presentation.viewModel.FoodRecipeDetailViewModel
@@ -52,14 +54,40 @@ class InstructionsFragment : Fragment(R.layout.fragment_instructions){
     }
 
     private fun observeLiveData(){
-        viewModel.recipeDetailLiveData.observe(viewLifecycleOwner, Observer {
-            mealDetail = it
-            setInstructionsDetailData(it)
+        viewModel.recipeDetailLiveData.observe(viewLifecycleOwner, Observer { response ->
+            when (response) {
+                is Resource.Success -> {
+                    hideProgressBar()
+                    response.data?.let {
+                        mealDetail = it
+                        setInstructionsDetailData(it)
+                    }
+                }
 
+                is Resource.Error -> {
+                    hideProgressBar()
+                    response.message?.let { message ->
+                        Toast.makeText(activity, "An Error Occured $message", Toast.LENGTH_LONG)
+                            .show()
+                    }
+                }
+
+                is Resource.Loading -> {
+                    showProgressBar()
+                }
+            }
         })
     }
 
     private fun setInstructionsDetailData(mealsList: MealsList){
         binding.tvContent.text = mealsList.meals[0].strInstructions
+    }
+
+    private fun hideProgressBar(){
+        binding.ingredientDetailProgressBar.visibility = View.GONE
+    }
+
+    private fun showProgressBar(){
+        binding.ingredientDetailProgressBar.visibility = View.VISIBLE
     }
 }

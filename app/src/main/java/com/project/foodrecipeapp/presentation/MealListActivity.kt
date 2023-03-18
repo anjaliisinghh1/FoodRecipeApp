@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.foodrecipeapp.common.Constants
 import com.project.foodrecipeapp.common.Constants.EMPTY
+import com.project.foodrecipeapp.common.Constants.SEARCH_TEXT
 import com.project.foodrecipeapp.common.Constants.SELECTED_VALUE
 import com.project.foodrecipeapp.common.Constants.SELECTED_VALUE_AREA
 import com.project.foodrecipeapp.common.Constants.SELECTED_VALUE_INGREDIENTS
@@ -27,6 +28,7 @@ class MealListActivity : AppCompatActivity() {
     private var selectedValueForFilter = EMPTY
     private var selectedValueForArea = EMPTY
     private var selectedValueForIngredient = EMPTY
+    private var searchText = EMPTY
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +39,7 @@ class MealListActivity : AppCompatActivity() {
         selectedValueForFilter = intent.getStringExtra(SELECTED_VALUE) ?: EMPTY
         selectedValueForArea = intent.getStringExtra(SELECTED_VALUE_AREA) ?: EMPTY
         selectedValueForIngredient = intent.getStringExtra(SELECTED_VALUE_INGREDIENTS) ?: EMPTY
+        searchText = intent.getStringExtra(SEARCH_TEXT) ?: EMPTY
 
         if (!selectedValueForFilter.isNullOrEmpty()){
             viewModel.getRecipesByCategory(selectedValueForFilter)
@@ -48,6 +51,10 @@ class MealListActivity : AppCompatActivity() {
 
         if (!selectedValueForIngredient.isNullOrEmpty()){
             viewModel.getRecipesByIngredients(selectedValueForIngredient)
+        }
+
+        if (searchText.isNotEmpty()){
+            viewModel.getSearchedMeals(searchText)
         }
         observeLiveData()
         onClickListener()

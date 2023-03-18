@@ -46,8 +46,8 @@ val repositoryModule: Module = module {
 
 val viewmodelModule: Module = module {
     viewModel { HomeFoodViewModel(get(), get(), get(), get()) }
-    viewModel { FoodRecipeDetailViewModel(get()) }
-    viewModel { MealListViewModel(get(),get(),get(),get()) }
+    viewModel { FoodRecipeDetailViewModel(get(), get()) }
+    viewModel { MealListViewModel(get(),get(),get(),get(), get()) }
     viewModel { HomeFoodExploreViewModel(get(), get(), get(), get()) }
 }
 
@@ -61,4 +61,5 @@ val usecaseModule: Module = module {
     single { GetAllExploreIngredientsUseCase(get()) }
     single { GetFoodByAreaUseCase(get()) }
     single { GetFoodByIngredientUseCase(get()) }
+    single { GetSearchedMealsUseCase(get()) }
 }

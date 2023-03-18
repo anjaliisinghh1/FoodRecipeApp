@@ -14,4 +14,5 @@ object Constants {
     const val SELECTED_VALUE_INGREDIENTS = "selected_value_ingredients"
     const val TRENDING_RECIPE = "Seafood"
     const val EXPLORE_LIST = "list"
+    const val SEARCH_TEXT = "search_text"
 }

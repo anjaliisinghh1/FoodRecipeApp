@@ -5,10 +5,6 @@
         android:title="@string/home"
         android:icon="@drawable/ic_baseline_home_24" />
 
-    <item android:id="@+id/homeFoodFavouriteFragment"
-        android:title="@string/favourite"
-        android:icon="@drawable/ic_baseline_favorite_24" />
-
     <item android:id="@+id/homeFoodExploreFragment"
         android:title="@string/explore"
         android:icon="@drawable/ic_baseline_more_horiz_24" />

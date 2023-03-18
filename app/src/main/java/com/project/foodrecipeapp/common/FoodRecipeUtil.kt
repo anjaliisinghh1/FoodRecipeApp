@@ -1,6 +1,7 @@
 package com.project.foodrecipeapp.common
 
 import android.content.Context
+import android.content.Intent
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -8,6 +9,17 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.project.foodrecipeapp.R
+import com.project.foodrecipeapp.domain.model.Meal
+
+fun shareNews(context: Context?,meal: Meal){
+    val intent = Intent().apply {
+        action = Intent.ACTION_SEND
+        putExtra(Intent.EXTRA_TEXT,meal.strSource)
+        putExtra(Intent.EXTRA_TITLE,meal.strMeal)
+        type = "text/plain"
+    }
+    context?.startActivity(Intent.createChooser(intent,"Share Recipe On"))
+}
 
 fun circularProgressDrawableImageLoad(context: Context): CircularProgressDrawable {
     return CircularProgressDrawable(context).apply {

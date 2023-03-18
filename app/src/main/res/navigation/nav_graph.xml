@@ -10,11 +10,6 @@
         android:label="HomeFoodFragment" />
 
     <fragment
-        android:id="@+id/homeFoodFavouriteFragment"
-        android:name="com.project.foodrecipeapp.presentation.fragments.HomeFoodFavouriteFragment"
-        android:label="HomeFoodFavouriteFragment" />
-
-    <fragment
         android:id="@+id/homeFoodExploreFragment"
         android:name="com.project.foodrecipeapp.presentation.fragments.HomeFoodExploreFragment"
         android:label="HomeFoodExploreFragment" />

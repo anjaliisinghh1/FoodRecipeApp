@@ -45,4 +45,8 @@ class FoodRecipeRepositoryImpl(
         return api.getAllExploreIngredients(allIngredients)
     }
 
+    override suspend fun getSearchMeal(search: String): Response<AllMealDTO> {
+        return api.getSearchMeal(search)
+    }
+
 }

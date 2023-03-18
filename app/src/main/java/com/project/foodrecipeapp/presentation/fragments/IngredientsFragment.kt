@@ -1,7 +1,10 @@
 package com.project.foodrecipeapp.presentation.fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.project.foodrecipeapp.R
@@ -9,7 +12,9 @@ import com.project.foodrecipeapp.common.Constants.EMPTY
 import com.project.foodrecipeapp.common.Constants.MEAL_ID
 import com.project.foodrecipeapp.common.Constants.MEAL_IMG_URL
 import com.project.foodrecipeapp.common.Constants.MEAL_NAME
+import com.project.foodrecipeapp.common.Resource
 import com.project.foodrecipeapp.common.loadImage
+import com.project.foodrecipeapp.common.shareNews
 import com.project.foodrecipeapp.databinding.FragmentIngredientsBinding
 import com.project.foodrecipeapp.domain.model.MealsList
 import com.project.foodrecipeapp.presentation.viewModel.FoodRecipeDetailViewModel
@@ -54,13 +59,32 @@ class IngredientsFragment : Fragment(R.layout.fragment_ingredients){
         }
 
         observeLiveData()
+        onClickListener()
 
     }
 
     private fun observeLiveData(){
-        viewModel.recipeDetailLiveData.observe(viewLifecycleOwner, Observer {
-            mealDetail = it
-            setIngredientsDetailData(it)
+        viewModel.recipeDetailLiveData.observe(viewLifecycleOwner, Observer { response ->
+            when(response){
+                is Resource.Success -> {
+                    hideProgressBar()
+                    response.data?.let {
+                        mealDetail = it
+                        setIngredientsDetailData(it)
+                    }
+                }
+
+                is Resource.Error -> {
+                    hideProgressBar()
+                    response.message?.let { message ->
+                        Toast.makeText(activity,"An Error Occured $message", Toast.LENGTH_LONG).show()
+                    }
+                }
+
+                is Resource.Loading -> {
+                    showProgressBar()
+                }
+            }
 
         })
     }
@@ -104,5 +128,32 @@ class IngredientsFragment : Fragment(R.layout.fragment_ingredients){
                     "\n" + bullet(it.strIngredient19) + it.strIngredient19 + "\t" + it.strMeasure19 +
                     "\n" + bullet(it.strIngredient20) + it.strIngredient20 + "\t" + it.strMeasure20
         }
+    }
+
+    private fun onClickListener(){
+        binding.shareIcon.setOnClickListener {
+            shareNews(context,mealDetail.meals[0])
+        }
+
+        binding.youtubeIcon.setOnClickListener {
+            val youtubeUrl = mealDetail.meals[0].strYoutube
+            if (!youtubeUrl.isNullOrEmpty()){
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(youtubeUrl)))
+            }
+        }
+    }
+
+    private fun hideProgressBar(){
+        binding.detailProgressBar.visibility = View.GONE
+        binding.tvLabelInstructions.visibility = View.VISIBLE
+        binding.youtubeIcon.visibility = View.VISIBLE
+        binding.shareIcon.visibility = View.VISIBLE
+    }
+
+    private fun showProgressBar(){
+        binding.detailProgressBar.visibility = View.VISIBLE
+        binding.tvLabelInstructions.visibility = View.GONE
+        binding.youtubeIcon.visibility = View.GONE
+        binding.shareIcon.visibility = View.GONE
     }
 }

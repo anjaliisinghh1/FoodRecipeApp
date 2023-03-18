@@ -33,4 +33,7 @@ interface FoodRecipeApi {
 
     @GET("list.php?")
     suspend fun getAllExploreIngredients(@Query("i") allIngredients: String): Response<ExploreIngredientsDTO>
+
+    @GET("search.php?")
+    suspend fun getSearchMeal(@Query("s") search: String): Response<AllMealDTO>
 }

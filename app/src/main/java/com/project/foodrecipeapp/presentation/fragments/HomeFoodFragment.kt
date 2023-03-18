@@ -11,6 +11,7 @@ import com.project.foodrecipeapp.R
 import com.project.foodrecipeapp.common.Constants.MEAL_ID
 import com.project.foodrecipeapp.common.Constants.MEAL_IMG_URL
 import com.project.foodrecipeapp.common.Constants.MEAL_NAME
+import com.project.foodrecipeapp.common.Constants.SEARCH_TEXT
 import com.project.foodrecipeapp.common.Constants.SELECTED_VALUE
 import com.project.foodrecipeapp.common.Resource
 import com.project.foodrecipeapp.common.loadImage
@@ -138,6 +139,16 @@ class HomeFoodFragment : Fragment(R.layout.fragment_home_food){
             }
             startActivity(Intent(activity,MealListActivity::class.java).putExtras(bundle))
         }
+
+        binding.searchArrow.setOnClickListener {
+            val searchText = binding.etSearch.text.toString()
+            if (searchText.isNotEmpty()){
+                val bundle = Bundle().apply {
+                    putString(SEARCH_TEXT,searchText)
+                }
+                startActivity(Intent(activity,MealListActivity::class.java).putExtras(bundle))
+            }
+        }
     }
 
     private fun setUpTrendingRecipesRecyclerView(){
@@ -158,7 +169,6 @@ class HomeFoodFragment : Fragment(R.layout.fragment_home_food){
 
     private fun hideProgressBar(){
         binding.homeListProgressBar.visibility = View.GONE
-        binding.tvHome.visibility = View.VISIBLE
         binding.tvWhatsOnYourMind.visibility = View.VISIBLE
         binding.tvTrendingRecipes.visibility = View.VISIBLE
         binding.tvCategories.visibility = View.VISIBLE
@@ -166,7 +176,6 @@ class HomeFoodFragment : Fragment(R.layout.fragment_home_food){
 
     private fun showProgressBar(){
         binding.homeListProgressBar.visibility = View.VISIBLE
-        binding.tvHome.visibility = View.GONE
         binding.tvWhatsOnYourMind.visibility = View.GONE
         binding.tvTrendingRecipes.visibility = View.GONE
         binding.tvCategories.visibility = View.GONE

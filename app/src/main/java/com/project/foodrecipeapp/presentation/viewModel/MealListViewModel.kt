@@ -13,6 +13,7 @@ import com.project.foodrecipeapp.domain.model.AllMeal
 import com.project.foodrecipeapp.domain.usecases.GetFoodByAreaUseCase
 import com.project.foodrecipeapp.domain.usecases.GetFoodByCategoryUseCase
 import com.project.foodrecipeapp.domain.usecases.GetFoodByIngredientUseCase
+import com.project.foodrecipeapp.domain.usecases.GetSearchedMealsUseCase
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.io.IOException
@@ -21,7 +22,8 @@ class MealListViewModel(
     application: Application,
     private val getFoodByCategoryUseCase: GetFoodByCategoryUseCase,
     private val getFoodByAreaUseCase: GetFoodByAreaUseCase,
-    private val getFoodByIngredientUseCase: GetFoodByIngredientUseCase
+    private val getFoodByIngredientUseCase: GetFoodByIngredientUseCase,
+    private val getSearchedMealsUseCase: GetSearchedMealsUseCase
 ) : AndroidViewModel(application) {
 
     private val _recipesLiveData = MutableLiveData<Resource<AllMeal>>()
@@ -73,6 +75,25 @@ class MealListViewModel(
                 if (hasInternetConnection()) {
                     val ingredientRecipes = getFoodByIngredientUseCase.execute(ingredient)
                     _recipesLiveData.postValue(handlingResponse(ingredientRecipes))
+                } else {
+                    _recipesLiveData.postValue(Resource.Error("No Internet Connection"))
+                }
+            } catch (t: Throwable) {
+                when (t) {
+                    is IOException -> _recipesLiveData.postValue(Resource.Error("Network Failure"))
+                    else -> _recipesLiveData.postValue(Resource.Error("Conversion Error"))
+                }
+            }
+        }
+    }
+
+    fun getSearchedMeals(search: String){
+        viewModelScope.launch {
+            _recipesLiveData.postValue(Resource.Loading())
+            try {
+                if (hasInternetConnection()) {
+                    val meal = getSearchedMealsUseCase.execute(search)
+                    _recipesLiveData.postValue(handlingResponse(meal))
                 } else {
                     _recipesLiveData.postValue(Resource.Error("No Internet Connection"))
                 }

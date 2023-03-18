@@ -23,4 +23,6 @@ interface FoodRecipeRepository {
 
     suspend fun getAllExploreIngredients(allIngredients: String): Response<ExploreIngredientsDTO>
 
+    suspend fun getSearchMeal(search: String): Response<AllMealDTO>
+
 }

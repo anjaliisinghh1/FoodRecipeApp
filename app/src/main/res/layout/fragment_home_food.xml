@@ -16,47 +16,89 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/llHeader"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_30sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="10dp"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
-                        android:id="@+id/tvHome"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:fontFamily="@font/myfont"
-                        android:text="Home"
-                        android:textColor="@color/purple_700"
-                        android:textSize="@dimen/_25ssp"
-                        android:textStyle="bold" />
-
                     <ImageView
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_baseline_search_24" />
+                        android:id="@+id/cookingpot"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="10dp"
+                        android:src="@mipmap/images"
+                        app:layout_constraintEnd_toStartOf="@+id/searchCardView"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                </LinearLayout>
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/searchCardView"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="5dp"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="@color/black"
+                        app:cardBackgroundColor="@color/white"
+                        app:layout_constraintStart_toEndOf="@+id/cookingpot"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:background="@color/white"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:hint="Search"
+                                app:boxBackgroundColor="@color/white"
+                                app:endIconMode="custom"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etSearch"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:id="@+id/search_arrow"
+                                android:layout_width="37dp"
+                                android:layout_height="20dp"
+                                android:src="@mipmap/arrow"
+                                android:layout_marginEnd="3dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:id="@+id/tv_Whats_on_your_mind"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_13sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
                     android:fontFamily="@font/myfont"
                     android:text="@string/what_s_on_your_mind"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_17ssp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@id/llHeader"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/llHeader" />
 
                 <androidx.cardview.widget.CardView
