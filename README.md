@@ -17,3 +17,10 @@ A Kotlin-based food recipe Android application that enables users to look for tr
     <td valign="top"><img src="https://user-images.githubusercontent.com/91699056/226253966-71d1b199-f5fc-4605-a235-5f166c38dce6.jpg" style="width:200px; height:400px"     </td>
   </tr>
 </table>
+
+### The Recipe List Page opens with a selection of a Category, Region, or Ingredient.
+<table>
+  <tr>
+    <td valign="top"><img src="https://user-images.githubusercontent.com/91699056/226254438-f15fda84-825f-480c-a225-b04990c59ea7.jpg" style="width:200px; height:400px"     </td>
+  </tr>
+</table>
