@@ -8,6 +8,17 @@ A Kotlin-based food recipe Android application that enables users to look for tr
 - Explore Recipes using different food categories, area and ingredients
 - Watch youtube video of the recipe or share the recipe
 
+### Android Architecture and Components
+- Kotlin
+- MVVM Clean Architecture
+- Coroutines
+- Retrofit
+- View Binding
+- Android Navigation Components
+- Viewmodel
+- LiveData
+- Glide
+
 ## Screenshots
 
 ### Home Page
@@ -46,7 +57,6 @@ A Kotlin-based food recipe Android application that enables users to look for tr
 <table>
   <tr>
     <td valign="top"><img src="https://user-images.githubusercontent.com/91699056/226256393-6d406642-140d-4e5f-a3fd-6d6a8f6bcb7b.jpg" style="width:200px; height:400px"</td>
-    <td valign="top"><img src="https://user-images.githubusercontent.com/91699056/226256432-6b4b8234-e30a-4cc8-a1db-73eac7e906e4.jpg" style="width:200px; height:400px"</td>
   </tr>
 </table>
 
