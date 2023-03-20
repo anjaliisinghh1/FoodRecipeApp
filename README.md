@@ -13,7 +13,7 @@ A Kotlin-based food recipe Android application that enables users to look for tr
 - MVVM Clean Architecture
 - Coroutines
 - Retrofit
-- View Binding
+- Data Binding
 - Android Navigation Components
 - Viewmodel
 - LiveData
