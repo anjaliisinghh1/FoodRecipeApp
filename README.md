@@ -10,4 +10,4 @@ A Kotlin-based food recipe Android application that enables users to look for tr
 
 ## Screenshots
 
-### 
+### Home Page
