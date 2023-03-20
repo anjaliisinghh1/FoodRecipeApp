@@ -11,6 +11,7 @@ A Kotlin-based food recipe Android application that enables users to look for tr
 ### Android Architecture and Components
 - Kotlin
 - MVVM Clean Architecture
+- Koin DI
 - Coroutines
 - Retrofit
 - Data Binding
