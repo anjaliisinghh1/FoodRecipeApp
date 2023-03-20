@@ -11,3 +11,9 @@ A Kotlin-based food recipe Android application that enables users to look for tr
 ## Screenshots
 
 ### Home Page
+<table>
+  <tr>
+    <td valign="top"><img src="https://user-images.githubusercontent.com/91699056/226252965-814cf02d-19e1-4f6d-9eef-3810cf25ee7f.jpg" style="width:300px; height:425px"     </td>
+    <td valign="top"><img src="https://user-images.githubusercontent.com/91699056/226253256-2aa938f3-6516-4910-ad9f-83dd9f9f0d80.jpg" style="width:300px; height:425px"     </td>
+  </tr>
+</table>
